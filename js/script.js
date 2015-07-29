@@ -18,6 +18,8 @@ function loadData() {
     var scaddress = 'https://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + address + '';
     // YOUR CODE GOES HERE!
     $body.append('<img class="bgimg" src="'+scaddress+'" />');
+
+
 //nytimes API
     var api_key = "2716a6dbe45cfbd34e4da2076a33ac52:11:72587342";
     var base_url_nyt = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q="+ city + "&sort=newest&api-key="+api_key+ "";
@@ -30,7 +32,9 @@ function loadData() {
             $nytElem.append('<li class="article">' + '<a href="'+ article.web_url +'">'+article.headline.main+'</a>'+
                 '<p>'+article.snippet+'</p>'+'</li>');
         }
-    });
+    }).error(
+        $nytHeaderElem.text('New york times Article could not be loaded')
+    );
 
     return false;
 };
